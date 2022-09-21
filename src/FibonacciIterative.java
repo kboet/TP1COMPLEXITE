@@ -1,9 +1,8 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Fibonacci {
+public class FibonacciIterative {
     public static void main(String[] args) {
-        maSuite(5);
+        maSuite(15);
     }
 
     public static ArrayList maSuite(int n){

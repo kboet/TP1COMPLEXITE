@@ -20,8 +20,9 @@ public class ZoneVide {
         return true;
     }
 
+    //PREND EN ENTREE UNE LISTE DE ZONE VIDE ET RENVOI LA PLUS GRANDE
     public static void MaximumVide(int[][] G){
-        ArrayList<ArrayList<ArrayList>> zonesVide = new ArrayList<>();
+        ArrayList<ArrayList> zonesVide = new ArrayList<>();
         ArrayList s = new ArrayList();
         for (int i = 0; i < G.length; i++){
             s.add(i);
@@ -39,22 +40,25 @@ public class ZoneVide {
 
 
     }
+    
+    //ON PREND EN ENTREE LE GRAPHE G ET L'ENSEMBLE AVEC TOUT LES SOMMETS A L'INTERIEUR
+    // SI IL Y'A UN ARC COMMUN A DEUX SOMMET ON CREE DEUX ENSMBLE {1,2,3} & arc(1,2) -> {1,3} & {2,3}
+    // APPEL RECURSIF QUI PREND EN ENTREE UNE LISTE D'ENSEMBLE AVEC LES NOUVEAUX ENSEMBLEs & LES ENSEMBLES VIDE PRECEDENTS
+    // LE PROGRAMME S'ARRETE QUAND TOUT LES ENSMBLES SONT VIDE
+    public static ArrayList<ArrayList> ListVide(int[][] G, ArrayList<ArrayList> z) {
+        ArrayList<ArrayList> zonesVide = new ArrayList<>();
 
-    public static ArrayList<ArrayList<ArrayList>> ListVide(int[][] G, ArrayList<ArrayList<ArrayList>> z) {
-        ArrayList<ArrayList<ArrayList>> zonesVide = new ArrayList<>();
         Boolean allVide = true;
         for (ArrayList zone : z) {
             Boolean isVide = true;
             for (int i = 0; i < zone.size(); i++) {
-                ArrayList s1 = new ArrayList<>();
-                ArrayList s2 = new ArrayList<>();
                 for (int y = i; y < zone.size(); y++) {
+                    ArrayList s1 = new ArrayList<>();
+                    ArrayList s2 = new ArrayList<>();
                     int a = (int) zone.get(i);
                     int b = (int) zone.get(y);
                     if (G[a][b] == 1) {
                         isVide = false;
-                        s1.clear();
-                        s2.clear();
                         s1.addAll(zone);
                         s1.remove(i);
                         s2.addAll(zone);
@@ -73,6 +77,7 @@ public class ZoneVide {
         }
 
         if (!allVide) zonesVide = ListVide(G, zonesVide);
+
         return zonesVide;
     }
 

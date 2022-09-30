@@ -20,7 +20,7 @@ public class ZoneVide {
         return true;
     }
 
-    public static void MaxVide(int[][] G){
+    public static void MaximumVide(int[][] G){
         ArrayList<ArrayList<ArrayList>> zonesVide = new ArrayList<>();
         ArrayList s = new ArrayList();
         for (int i = 0; i < G.length; i++){
@@ -86,6 +86,6 @@ public class ZoneVide {
                 {0,0,0,0,0,1,0},{1,0,1,0,1,0,0},
                 {1,0,1,0,0,0,0}
         };
-        MaxVide(G);
+        MaximumVide(G);
     }
 }

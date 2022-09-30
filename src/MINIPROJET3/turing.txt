@@ -1,0 +1,22 @@
+Une machine de Turing pour le langage X = {anbn | n ≥ 0}
+A a b
+S 0 
+T a A R 1 
+T B B R 3
+NEXTSTATE
+S E1
+T a a R 1
+T B B R 1
+T b B L 2
+NEXTSTATE
+S 2
+T A A R 0
+T a a L 2
+T B B L 2
+NEXTSTATE
+S 3
+T B B R 3
+T # # R 4
+NEXTSTATE
+S 4
+NEXTSTATE

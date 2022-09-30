@@ -1,8 +1,10 @@
+package MINIPROJET3;
+
 public class Transitions {
     char expectedChar, move;
-    State state;
+    int state;
 
-    public Transitions(char expectedChar, char move, State state) {
+    public Transitions(char expectedChar, char move, int state) {
         this.expectedChar = expectedChar;
         this.move = move;
         this.state = state;
@@ -12,11 +14,12 @@ public class Transitions {
         return expectedChar;
     }
 
-    public char getMove() {
-        return move;
+    public int getMove() {
+        if(move == 'R') return 1;
+        return -1;
     }
 
-    public State getState() {
+    public int getState() {
         return state;
     }
 }

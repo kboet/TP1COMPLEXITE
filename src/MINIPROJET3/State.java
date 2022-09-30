@@ -1,17 +1,26 @@
+package MINIPROJET3;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class State {
+
+
     boolean isFinal;
     boolean isInitial;
     Map<Character,Transitions> transitions = new HashMap<>();
 
-    public State(boolean isInitial, boolean isFinal) {
-        this.isInitial = isInitial;
-        this.isFinal = isFinal;
+    public State( Map transitions) {
+        this.transitions = transitions;
     }
 
+    public void setFinal(boolean aFinal) {
+        isFinal = aFinal;
+    }
 
+    public void setInitial(boolean initial) {
+        isInitial = initial;
+    }
     public boolean isFinal() {
         return isFinal;
     }
@@ -21,7 +30,7 @@ public class State {
     }
 
 
-    public State getNextState(char c) {
+    public int getNextState(char c) {
         return transitions.get(c).state;
     }
 
@@ -30,7 +39,7 @@ public class State {
 
     }
 
-    public int getExpectedChar(char c){
+    public char getExpectedChar(char c){
         return transitions.get(c).getExpectedChar();
     }
 

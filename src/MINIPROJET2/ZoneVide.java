@@ -43,7 +43,7 @@ public class ZoneVide {
 
     //ON PREND EN ENTREE LE GRAPHE G ET UNE LISTE D'ENSEMBLE DE SOMMET
     // SI IL Y'A UN ARC COMMUN A DEUX SOMMET ON CREE DEUX ENSMBLE {1,2,3} & arc(1,2) -> {1,3} & {2,3}
-    // APPEL RECURSIF QUI PREND EN ENTREE UNE LISTE D'ENSEMBLE AVEC LES NOUVEAUX ENSEMBLEs & LES ENSEMBLES VIDE PRECEDENTS
+    // APPEL RECURSIF QUI PREND EN ENTREE UNE LISTE D'ENSEMBLE AVEC LES NOUVEAUX ENSEMBLES & LES ENSEMBLES VIDE PRECEDENTS
     // LE PROGRAMME S'ARRETE QUAND TOUT LES ENSMBLES SONT VIDE
     public static ArrayList<ArrayList> ListVide(int[][] G, ArrayList<ArrayList> z) {
         ArrayList<ArrayList> zonesVide = new ArrayList<>();
@@ -82,15 +82,70 @@ public class ZoneVide {
     }
 
 
+    static public ArrayList zoneMaximale(int[][] G){
+        ArrayList  zoneMaximale = new ArrayList();
+        for (int i = 0; i<G.length;i++){
+            ArrayList temp = new ArrayList<>();
+            temp.addAll(zoneMaximale);
+            temp.add(i);
+            if (isVide(G,temp)) zoneMaximale.add(i);
+        }
+        System.out.println(zoneMaximale);
+        return zoneMaximale;
+    }
+
+    static public ArrayList zoneMaximumInc(int[][] G){
+        ArrayList<ArrayList> zones = new ArrayList();
+
+        for (int i = 0; i<G.length;i++){
+            ArrayList  zoneMaximale = new ArrayList();
+            for (int y = i; y<G.length;y++){
+            ArrayList temp = new ArrayList<>();
+            temp.addAll(zoneMaximale);
+            temp.add(y);
+            if (isVide(G,temp)) zoneMaximale.add(y);
+            }
+            zones.add(zoneMaximale);
+        }
+        ArrayList max = Collections.max(zones, new Comparator<>() {
+            @Override
+            public int compare(ArrayList o1, ArrayList o2) {
+                return o1.size() - o2.size();
+            }
+        });
+        return max;
+    }
+
+    static public int[][] generateGraph(int s){
+        int[][] G = new int[s][s];
+        G[0][0] = 1;
+        for(int i = 1; i<s; i++){
+            G[0][i] = 1;
+        }
+        for(int i = 1; i<s; i++){
+            G[i][0] = 1;
+            for(int y = 1; y<s; y++){
+                G[i][y] = 0;
+            }
+        }
+
+        return G;
+
+    }
 
 
     public static void main(String[] args) {
-        int [][] G = {
-                {0,1,1,1,0,1,1},{1,0,1,0,0,0,0},
-                {1,1,0,1,0,1,1},{1,0,1,0,0,0,0},
-                {0,0,0,0,0,1,0},{1,0,1,0,1,0,0},
-                {1,0,1,0,0,0,0}
-        };
-        MaximumVide(G);
+
+
+        int[][] G= {{0, 1, 1, 0, 0, 1, 1},
+                {1, 0, 1, 0, 0, 0, 0},
+                {1, 1, 0, 1, 0, 1, 1},
+                {0, 0, 1, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 1, 0},
+                {1, 0, 1, 0, 1, 0, 0},
+                {1, 0, 1, 0, 0, 0, 0}};
+
+        System.out.println(zoneMaximumInc(G));
+
     }
 }

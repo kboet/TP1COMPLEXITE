@@ -21,13 +21,6 @@ public class State {
     public void setInitial(boolean initial) {
         isInitial = initial;
     }
-    public boolean isFinal() {
-        return isFinal;
-    }
-
-    public boolean isInitial() {
-        return isInitial;
-    }
 
 
     public int getNextState(char c) {
@@ -40,6 +33,12 @@ public class State {
     }
 
     public char getExpectedChar(char c){
+        try{
+           return transitions.get(c).getExpectedChar();
+        }
+        catch (NullPointerException e){
+            System.out.println("MOT NON ACCEPTE");
+        }
         return transitions.get(c).getExpectedChar();
     }
 

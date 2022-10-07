@@ -1,3 +1,5 @@
+package MINIPROJET1;
+
 public class FibonacciExpMatrix {
     static int[][] matrix = {{0,1},{1,1}};
     static int[][]fibonacciFirstValue= {{0},{1}};
@@ -18,7 +20,6 @@ public class FibonacciExpMatrix {
     }
     public static int[][] matrixPow(int[][] matrix , int n){
         int [][] result = matrix;
-        // check if n == 2^k
         double v = Math.log(n) / Math.log(2);
         if(v %1 == 0){
             for (int a = 1; a <= v; a++){
@@ -43,20 +44,16 @@ public class FibonacciExpMatrix {
         };
     }
 
-    public static int[][]fibonacci (int n){
+    public static int fibonacci (int n){
         int[][]result = new int[2][1];
         result = matrix2x2x2x1(matrixPow(matrix,n),fibonacciFirstValue);
-            return result;
+            return result[0][0];
     }
 
     public static void main(String[] args) {
 
 
-        int mat[][] = fibonacci(15);
-        for (int i = 0; i < mat.length; i++)
-
-        // Loop through all elements of current row
-        for (int j = 0; j < mat[i].length; j++)
-            System.out.print(mat[i][j] + " ");
+        int mat = fibonacci(10);
+        System.out.println(mat);
     }
 }

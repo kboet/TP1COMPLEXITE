@@ -1,3 +1,5 @@
+package MINIPROJET1;
+
 public class Recursive {
 
     public static int Recursive(int n){
@@ -13,6 +15,6 @@ public class Recursive {
     }
 
     public static void main(String[] args) {
-        System.out.print(Recursive(2));
+        System.out.print(Recursive(50));
     }
 }
